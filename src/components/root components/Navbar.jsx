@@ -43,7 +43,7 @@ const Navbar = () => {
   }
 
   return (
-    <div className="shadow">
+    <div className="shadow shadow-cyan-600/50">
       <div className="w-11/12 mx-auto navbar bg-base-100 px-0 ">
         <div className="navbar-start">
           <div className="dropdown">
@@ -83,7 +83,7 @@ const Navbar = () => {
             {
               user ? <><li className="dropdown dropdown-bottom dropdown-center ">
                 <div tabIndex={0} role="button" className="">Dashboard</div>
-                <ul tabIndex={0} className="dropdown-content menu   shadow-pink-600/50 rounded-box z-1 w-52 p-2 shadow-sm">
+                <ul tabIndex={0} className="dropdown-content menu bg-base-100 shadow-pink-600/50 rounded-box z-1 w-52 p-2 shadow-sm">
                   <li><NavLink to="/add-service">Add A Service</NavLink></li>
                   <li><NavLink to="/manage-service">Manage Services</NavLink></li>
                   <li><NavLink to="/booked-service">Booked Service</NavLink></li>
@@ -110,7 +110,7 @@ const Navbar = () => {
                     data-tooltip-id="user-tooltip"
                     data-tooltip-content={user.displayName}
                     src={user.photoURL} />
-                  <Tooltip className='z-10 !bg-amber-200 !text-black ' id="user-tooltip" />
+                  <Tooltip className='z-10 !bg-cyan-600 !text-white ' id="user-tooltip" />
                 </div>
                 <button onClick={handleLogout} className='btn bg-pink-600 text-white font-semibold hidden sm:block'>Log out</button>
               </>
