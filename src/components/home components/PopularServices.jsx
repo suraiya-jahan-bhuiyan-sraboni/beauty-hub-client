@@ -18,9 +18,10 @@ const PopularServices = () => {
   console.log(services)
   if (loading) {
     return (
-      <div className=" flex justify-center items-center flex-col">
+      <div className=" flex justify-center items-center flex-col text-cyan-600">
+        <p>Wait a Moment</p>
         Loading...
-        <span className="loading loading-spinner loading-xl"></span>
+        <span className="loading loading-spinner loading-xl bg-pink-500"></span>
       </div>
     );
   }
