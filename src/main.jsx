@@ -5,9 +5,13 @@ import {
   RouterProvider,
 } from "react-router";
 import { router } from './router/Router';
+import AuthContextProvider from './context/AuthContextProvider';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <AuthContextProvider>
+     <RouterProvider router={router} /> 
+    </AuthContextProvider>
+    
   </StrictMode>,
 )
