@@ -25,11 +25,11 @@ export const router = createBrowserRouter([
             {
                 index: true,
                 path: '/',
-                element:<Home/>
+                element: <Home />
             },
             {
                 path: '/login',
-              element:<Login/>  
+                element: <Login />
             },
             {
                 path: '/register',
@@ -37,7 +37,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/manage-service',
-                element:<PrivateRoute><ManageService /></PrivateRoute> 
+                element: <PrivateRoute><ManageService /></PrivateRoute>
             },
             {
                 path: '/booked-service',
@@ -49,10 +49,10 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/service-to-do',
-                element: <PrivateRoute><ServiceToDo/></PrivateRoute>
+                element: <PrivateRoute><ServiceToDo /></PrivateRoute>
             },
             {
-                path: '/service-details',
+                path: '/service-details/:id',
                 element: <PrivateRoute><ServiceDetails /></PrivateRoute>
             },
             {
@@ -66,4 +66,3 @@ export const router = createBrowserRouter([
         Component: Error404,
     }
 ]);
-  
