@@ -22,7 +22,7 @@ const BookedService = () => {
   }, [])
 
 
-  console.log(bookedServices)
+ // console.log(bookedServices)
   if (loading) {
     return (
       <div className=" flex justify-center items-center flex-col text-cyan-600">
