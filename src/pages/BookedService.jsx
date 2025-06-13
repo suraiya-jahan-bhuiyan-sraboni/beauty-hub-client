@@ -25,7 +25,7 @@ const BookedService = () => {
  // console.log(bookedServices)
   if (loading) {
     return (
-      <div className=" flex justify-center items-center flex-col text-cyan-600">
+      <div className="min-h-screen flex justify-center items-center flex-col text-cyan-600">
         <p>Wait a Moment</p>
         Loading...
         <span className="loading loading-spinner loading-xl bg-pink-500"></span>
@@ -37,7 +37,10 @@ const BookedService = () => {
       <h1 className='text-center pb-10 font-bold text-3xl'>My Booked Services</h1>
       <div className='grid sm:grid-cols-2'>
         {
-          bookedServices.map(service => {
+          (bookedServices.length > 0) ? 
+          (<>
+            {
+              bookedServices.map(service => {
             const {
               _id,
               serviceId,
@@ -127,6 +130,9 @@ const BookedService = () => {
               </div>
             )
           })
+          }
+          </>):(<>fdfg</>)
+          
         }
       </div>
 
