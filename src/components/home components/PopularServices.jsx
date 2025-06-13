@@ -27,7 +27,7 @@ const PopularServices = () => {
   }
   return (
     <div className=''>
-      <div className='grid grid-cols-2 auto-rows-fr gap-4'>
+      <div className='grid sm:grid-cols-2 auto-rows-fr gap-4'>
         {
           services.map(service => {
             return (
