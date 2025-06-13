@@ -11,8 +11,6 @@ const ManageService = () => {
   const [services, setservices] = useState([])
   const [loading, setLoading] = useState(true)
 
-
-
   useEffect(() => {
     fetch(`${import.meta.env.VITE_API_URL}/my-services?email=${user?.email}`)
       .then(res => res.json())
@@ -20,7 +18,11 @@ const ManageService = () => {
         setservices(data)
         setLoading(false)
       })
-  }, [])
+  }, [services])
+  const handleDelete = (id) => {
+    setServices(prev => prev.filter(service => service._id !== id));
+  };
+
 
   if (loading) {
     return (
@@ -41,7 +43,7 @@ const ManageService = () => {
         {
           services.map(service => (
             
-              <ManageServiceCard key={service._id} service={service} />
+            <ManageServiceCard key={service._id} service={service} onDelete={handleDelete} />
             
           ))
         }

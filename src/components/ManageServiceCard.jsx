@@ -2,8 +2,9 @@ import React from 'react'
 import { motion } from "framer-motion";
 import { Link } from 'react-router'
 import { IoLocation } from "react-icons/io5";
+import Swal from 'sweetalert2'
 
-const ManageServiceCard = ({ service }) => {
+const ManageServiceCard = ({ service, onDelete }) => {
     const {
         _id,
         serviceImage,
@@ -14,6 +15,33 @@ const ManageServiceCard = ({ service }) => {
         price,
         area
     } = service;
+    const handleDeleteService = (id) => {
+        Swal.fire({
+            title: "Do you want to Delete the service?",
+            showDenyButton: true,
+            showCancelButton: true,
+            confirmButtonText: "Delete",
+            denyButtonText: `Don't Delete`
+        }).then((result) => {
+            if (result.isConfirmed) {
+
+                fetch(`${import.meta.env.VITE_API_URL}/services/${_id}`, {
+                    method: "DELETE",
+                }).then(res => res.json())
+                    .then(data => {
+                        if (data.deletedCount > 0) {
+                            Swal.fire("Deleted!", "", "success");
+                            if (onDelete) onDelete(_id);
+                        }
+                    });
+
+            } else if (result.isDenied) {
+                Swal.fire("Service is not Deleted", "", "info");
+            }
+        });
+
+    }
+
     return (
         <motion.div
             whileHover={{ scale: 1.02 }}
@@ -60,7 +88,7 @@ const ManageServiceCard = ({ service }) => {
 
                 <div className="mt-4 w-full flex gap-4 items-center justify-between ">
                     <Link to={`/edit-service/${_id}`} className='btn w-[48%] text-white bg-cyan-600 '>Edit</Link>
-                    <button className='btn w-[48%] text-white bg-pink-600 '>Delete</button>
+                    <button onClick={() => handleDeleteService(_id)} className='btn w-[48%] text-white bg-pink-600 '>Delete</button>
                 </div>
             </div>
         </motion.div>
