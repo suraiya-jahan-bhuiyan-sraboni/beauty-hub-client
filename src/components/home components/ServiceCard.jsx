@@ -44,7 +44,7 @@ const ServiceCard = ({service}) => {
             </div>
           </div>
           <div className="text-right">
-            <p className="text-xl font-bold text-pink-700">$
+            <p className="text-xl font-bold text-pink-700"> ৳
               {price}
             </p>
             <p className="text-xs text-gray-500">per session</p>

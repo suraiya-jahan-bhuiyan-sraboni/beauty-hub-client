@@ -1,8 +1,49 @@
-import React from 'react'
+import React, { use } from 'react'
+import ManageServiceCard from '../components/ManageServiceCard'
+import { useState } from 'react'
+import { useEffect } from 'react'
+import { AuthContext } from '../context/AuthContextProvider'
 
 const ManageService = () => {
+
+  const { user } = use(AuthContext)
+  const [services, setservices] = useState([])
+  const [loading, setLoading] = useState(true)
+
+
+
+  useEffect(() => {
+    fetch(`${import.meta.env.VITE_API_URL}/my-services?email=${user?.email}`)
+      .then(res => res.json())
+      .then(data => {
+        setservices(data)
+        setLoading(false)
+      })
+  }, [])
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex justify-center items-center flex-col text-cyan-600">
+        <p>Wait a Moment</p>
+        Loading...
+        <span className="loading loading-spinner loading-xl bg-pink-500"></span>
+      </div>
+    );
+  }
   return (
-    <div className='w-11/12 mx-auto min-h-screen'>ManageService</div>
+    <div className='w-11/12 mx-auto min-h-screen'>
+      <h1 className='text-center p-7 text-2xl font-bold text-pink-500'>Manage services</h1>
+      <div className='grid sm:grid-cols-2 gap-6'>
+        {
+          services.map(service => (
+            <>
+              <ManageServiceCard key={service._id} service={service} />
+            </>
+          ))
+        }
+      </div>
+
+    </div>
   )
 }
 

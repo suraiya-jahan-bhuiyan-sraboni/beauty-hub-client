@@ -2,7 +2,8 @@ import React from 'react'
 import { motion } from "framer-motion";
 import { Link } from 'react-router'
 import { IoLocation } from "react-icons/io5";
-const AllServiceCard = ({ service }) => {
+
+const ManageServiceCard = ({ service }) => {
     const {
         _id,
         serviceImage,
@@ -22,7 +23,7 @@ const AllServiceCard = ({ service }) => {
             <div className=" bg-purple-700 text-white text-center text-2xl font-bold relative">
                 <img className='w-full h-[250px] object-cover' src={`${serviceImage}`} alt="" />
                 <span className='absolute right-1/2 bottom-1/4 
-                    transform translate-x-1/2 text-shadow-lg/50 text-shadow-pink-500'>{serviceName}</span>
+                        transform translate-x-1/2 text-shadow-lg/50 text-shadow-pink-500'>{serviceName}</span>
             </div>
 
             <div className="card-body space-y-2">
@@ -33,9 +34,8 @@ const AllServiceCard = ({ service }) => {
                 </p>
                 <div className="flex justify-between items-center mt-4">
                     <div className="flex items-center gap-2">
-                        <div className="w-10 h-10  rounded-full bg-emerald-600 text-white 
-                        flex items-center justify-center font-bold">
-                            <img className='rounded-full w-full' src={`${providerImage}`} alt={`${providerName} image`} />
+                        <div className="w-10 h-10 rounded-full bg-emerald-600 text-white flex items-center justify-center font-bold">
+                            <img className='rounded-full' src={`${providerImage}`} alt={`${providerName} image`} />
 
                         </div>
                         <div className="text-sm">
@@ -45,9 +45,8 @@ const AllServiceCard = ({ service }) => {
                             <p className="text-gray-500">Beauty Expert</p>
                         </div>
                     </div>
-                    <div className='flex flex-wrap gap-4 justify-center items-center text-center '>
-                        <p className='flex items-center gap-2 text-gray-400'>
-                            <IoLocation className='text-xl' />Location:</p>
+                    <div className='flex gap-4 items-center justify-center flex-wrap text-center '>
+                        <p className='flex items-center gap-2 text-gray-400'><IoLocation className='text-xl' />Location:</p>
                         <p className=' text-cyan-600'>{area}</p>
                     </div>
                     <div className="text-right">
@@ -59,17 +58,13 @@ const AllServiceCard = ({ service }) => {
                 </div>
 
 
-                <div className="mt-4">
-                    <Link
-                        to={`/service-details/${_id}`}
-                        // onClick={onViewDetails}
-                        className="btn text-white bg-pink-600 btn-block"
-                    >
-                        View Details</Link>
+                <div className="mt-4 w-full flex gap-4 items-center justify-between ">
+                    <button className='btn w-[48%] text-white bg-cyan-600 '>Edit</button>
+                    <button className='btn w-[48%] text-white bg-pink-600 '>Delete</button>
                 </div>
             </div>
         </motion.div>
     )
 }
 
-export default AllServiceCard
+export default ManageServiceCard
