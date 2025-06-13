@@ -15,7 +15,7 @@ const ManageServiceCard = ({ service, onDelete }) => {
         price,
         area
     } = service;
-    const handleDeleteService = (id) => {
+    const handleDeleteService = () => {
         Swal.fire({
             title: "Do you want to Delete the service?",
             showDenyButton: true,
@@ -88,7 +88,7 @@ const ManageServiceCard = ({ service, onDelete }) => {
 
                 <div className="mt-4 w-full flex gap-4 items-center justify-between ">
                     <Link to={`/edit-service/${_id}`} className='btn w-[48%] text-white bg-cyan-600 '>Edit</Link>
-                    <button onClick={() => handleDeleteService(_id)} className='btn w-[48%] text-white bg-pink-600 '>Delete</button>
+                    <button onClick={() => handleDeleteService()} className='btn w-[48%] text-white bg-pink-600 '>Delete</button>
                 </div>
             </div>
         </motion.div>

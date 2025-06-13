@@ -19,8 +19,9 @@ const ManageService = () => {
         setLoading(false)
       })
   }, [services])
+
   const handleDelete = (id) => {
-    setServices(prev => prev.filter(service => service._id !== id));
+    setservices(prev => prev.filter(service => service._id !== id));
   };
 
 
