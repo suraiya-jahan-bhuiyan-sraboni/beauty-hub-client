@@ -98,7 +98,7 @@ const BookedService = () => {
                       </div>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mt-4 text-sm text-gray-600">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4 text-sm text-gray-600">
                       <div className="flex flex-wrap items-center gap-1 text-4xl">
                         <SlCalender className="w-4 h-4 " />
                         <p className='text-xs'>{serviceTakingDate}</p>
