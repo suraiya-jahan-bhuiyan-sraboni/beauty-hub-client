@@ -35,7 +35,7 @@ const AllServiceCard = ({ service }) => {
                     <div className="flex items-center gap-2">
                         <div className="w-10 h-10  rounded-full bg-emerald-600 text-white 
                         flex items-center justify-center font-bold">
-                            <img className='rounded-full w-full' src={`${providerImage}`} alt={`${providerName} image`} />
+                            <img className='w-10 h-10 object-cover rounded-full ' src={`${providerImage}`} alt={`${providerName} image`} />
 
                         </div>
                         <div className="text-sm">

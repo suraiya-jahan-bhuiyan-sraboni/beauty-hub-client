@@ -2,9 +2,14 @@ import React from 'react'
 import { use } from 'react'
 import Helmet from 'react-helmet'
 import { AuthContext } from '../context/AuthContextProvider'
+import axios from 'axios'
+import { toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
+import { useNavigate } from 'react-router'
 const AddService = () => {
+  const navigate = useNavigate()
   const { user } = use(AuthContext)
-  console.log(user)
+ // console.log(user)
   const handleAddService = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -13,8 +18,28 @@ const AddService = () => {
     data.providerEmail = user.email
     data.ProviderName = user.displayName
     data.providerImage = user.photoURL
-    data.price=parseInt(data.price)
-    console.log(data)
+    data.price = parseInt(data.price)
+    //console.log(data)
+    fetch(`${import.meta.env.VITE_API_URL}/services`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    }).then(res => res.json())
+      .then(data => {
+        //console.log(res)
+        if (data.acknowledged) {
+         // console.log(data)
+          toast.success('Service created successfully!')
+          navigate('/')
+        } else {
+          toast.error('Failed to create group. Please try again.');
+        }
+
+      })
+      .catch(err => toast.error('An error occurred. Please try again later.'))
+
   }
   return (
     <div className='w-11/12 mx-auto min-h-screen py-10'>
@@ -33,6 +58,7 @@ const AddService = () => {
                   <span className="label-text">Service Image URL</span>
                 </label>
                 <input
+                  required
                   name='serviceImage'
                   type="text"
                   placeholder="https://example.com/image.jpg"
@@ -45,6 +71,7 @@ const AddService = () => {
                   <span className="label-text">Service Name</span>
                 </label>
                 <input
+                  required
                   name='serviceName'
                   type="text"
                   placeholder="Service Name"
@@ -57,6 +84,7 @@ const AddService = () => {
                   <span className="label-text">Price ($)</span>
                 </label>
                 <input
+                  required
                   name='price'
                   type="number"
                   placeholder="Price"
@@ -70,6 +98,7 @@ const AddService = () => {
                   <span className="label-text">Service Area</span>
                 </label>
                 <input
+                  required
                   name='area'
                   type="text"
                   placeholder="e.g., Downtown, Midtown"
@@ -82,6 +111,7 @@ const AddService = () => {
                   <span className="label-text">Description</span>
                 </label>
                 <textarea
+                  required
                   name='description'
                   className="textarea textarea-bordered h-24 w-full"
                   placeholder="Description"
