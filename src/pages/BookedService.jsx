@@ -35,10 +35,10 @@ const BookedService = () => {
   return (
     <div className='w-11/12 mx-auto min-h-screen py-10'>
       <h1 className='text-center pb-10 font-bold text-3xl'>My Booked Services</h1>
-      <div className='grid sm:grid-cols-2'>
+      <div className=''>
         {
           (bookedServices.length > 0) ? 
-          (<>
+            (<div className='grid sm:grid-cols-2'>
             {
               bookedServices.map(service => {
             const {
@@ -131,7 +131,10 @@ const BookedService = () => {
             )
           })
           }
-          </>):(<>fdfg</>)
+            </div>
+            ) : (<>
+            <h1 className='text-center text-xl'>No service is booked! Go to services to book service!</h1>
+            </>)
           
         }
       </div>
