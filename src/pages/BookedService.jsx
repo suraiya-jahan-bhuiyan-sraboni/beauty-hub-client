@@ -55,7 +55,7 @@ const BookedService = () => {
               providerArea,
             } = service;
             return (
-              <div className="card bg-base-100 shadow-cyan-500/50 shadow-md border border-pink-300 rounded-xl overflow-hidden">
+              <div className="card bg-base-100 shadow-cyan-500/50 shadow-md border border-pink-300 rounded-xl overflow-hidden" key={_id}>
                 <div className="flex flex-col gap-4 p-4">
                   <div className='w-full'>
                     <img
