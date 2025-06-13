@@ -59,7 +59,7 @@ const ManageServiceCard = ({ service }) => {
 
 
                 <div className="mt-4 w-full flex gap-4 items-center justify-between ">
-                    <button className='btn w-[48%] text-white bg-cyan-600 '>Edit</button>
+                    <Link to={`/edit-service/${_id}`} className='btn w-[48%] text-white bg-cyan-600 '>Edit</Link>
                     <button className='btn w-[48%] text-white bg-pink-600 '>Delete</button>
                 </div>
             </div>

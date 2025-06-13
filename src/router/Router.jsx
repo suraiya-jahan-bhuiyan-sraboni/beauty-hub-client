@@ -13,6 +13,7 @@ import ServiceDetails from "../pages/ServiceDetails";
 import Error404 from "../pages/Error404";
 import AllService from "../pages/AllService";
 import PrivateRoute from "./PrivateRoute";
+import EditService from "../pages/EditService";
 export const router = createBrowserRouter([
     {
         path: "/",
@@ -46,6 +47,10 @@ export const router = createBrowserRouter([
             {
                 path: '/add-service',
                 element: <PrivateRoute><AddService /></PrivateRoute>
+            },
+            {
+                path: '/edit-service/:id',
+                element: <PrivateRoute><EditService /></PrivateRoute>
             },
             {
                 path: '/service-to-do',

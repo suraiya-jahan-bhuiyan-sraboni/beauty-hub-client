@@ -34,7 +34,7 @@ const AddService = () => {
           toast.success('Service created successfully!')
           navigate('/')
         } else {
-          toast.error('Failed to create group. Please try again.');
+          toast.error('Failed to create service. Please try again.');
         }
 
       })
