@@ -2,6 +2,7 @@ import React from 'react'
 import AllServiceCard from '../components/AllServiceCard'
 import { useState } from 'react'
 import { useEffect } from 'react'
+import Helmet from "react-helmet"
 
 
 const AllService = () => {
@@ -31,6 +32,9 @@ const AllService = () => {
   }
   return (
     <div className='w-11/12 mx-auto min-h-screen'>
+      <Helmet>
+        <title>All Services</title>
+      </Helmet>
       <div className='py-15 '>
         <h1 className='text-center font-bold text-3xl'>All Beauty Services</h1>
         <p className='text-center text-xs py-4 mb-10'>Discover our complete range of professional beauty and wellness services from certified experts</p>
@@ -57,8 +61,8 @@ const AllService = () => {
           {
             (services.length > 0) ? (<>
               {services.map(service => (
-              <div className='py-5'>
-                <AllServiceCard key={service._id} service={service} />
+              <div className='py-5' key={service._id}>
+                <AllServiceCard  service={service} />
               </div>
             ))}
             </>) : (<>
