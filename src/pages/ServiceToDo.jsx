@@ -39,7 +39,7 @@ const ServiceToDo = () => {
       <p className='text-center pb-10 text-xs'>Manage your booked services and update their status</p>
       {
         (services.length > 0) ? (
-          <>
+          <div className='grid sm:grid-cols-2 xl:grid-cols-4 gap-4'>
             {
               services.map(service => {
                 const { _id,
@@ -148,7 +148,7 @@ const ServiceToDo = () => {
                 )
               })
             }
-          </>)
+          </div>)
           : (<>
             <h1 className='text-center text-pink-500'>No one is booked your services yet!</h1>
           </>)

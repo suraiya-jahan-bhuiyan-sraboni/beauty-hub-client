@@ -38,7 +38,7 @@ const BookedService = () => {
       <div className=''>
         {
           (bookedServices.length > 0) ? 
-            (<div className='grid sm:grid-cols-2'>
+            (<div className='grid sm:grid-cols-2 gap-6'>
             {
               bookedServices.map(service => {
             const {
@@ -64,7 +64,7 @@ const BookedService = () => {
                     <img
                     src={serviceImage}
                     alt={serviceName}
-                    className=" object-cover rounded-md"
+                    className="w-full object-cover rounded-md"
                   />
                   </div>
                   

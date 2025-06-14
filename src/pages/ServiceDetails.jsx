@@ -1,14 +1,16 @@
 import React, { use } from 'react'
 import { useState } from 'react'
 import { useEffect } from 'react'
-import { useParams } from 'react-router'
+import { Navigate, useNavigate, useParams } from 'react-router'
 import { motion } from "framer-motion";
 import { FaStar } from "react-icons/fa";
 import Helmet from "react-helmet"
 import { AuthContext } from '../context/AuthContextProvider';
+import { toast } from 'react-toastify';
 
 const ServiceDetails = () => {
-  const {user}=use(AuthContext)
+  const navigate = useNavigate()
+  const { user } = use(AuthContext)
   const [service, setservice] = useState({})
   const [loading, setLoading] = useState(true)
   const { id } = useParams()
@@ -24,7 +26,7 @@ const ServiceDetails = () => {
       })
   }, [id])
 
- // console.log(service)
+  // console.log(service)
   if (loading) {
     return (
       <div className="min-h-screen flex justify-center items-center flex-col text-cyan-600">
@@ -43,8 +45,40 @@ const ServiceDetails = () => {
     providerName,
     providerImage,
     providerEmail,
-   area
+    area
   } = service;
+  const handleBookings = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData.entries());
+    data.serviceImage = serviceImage
+    data.providerImage = providerImage
+    data.userImage = user.photoURL
+    data.price = parseInt(data.price)
+    data.serviceStatus = 'pending'
+    data.providerArea=area
+    console.log(data)
+    fetch(`${import.meta.env.VITE_API_URL}/bookings`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    })
+      .then(res => res.json())
+      .then(data => {
+        console.log(data)
+        if (data.acknowledged) {
+          // console.log(data)
+          toast.success('Booking successfully Done!')
+          navigate('/booked-service')
+        } else {
+          toast.error('Failed to Purchase. Please try again.');
+        }
+
+      })
+  }
 
   return (
     <div className='w-11/12 mx-auto min-h-screen py-5'>
@@ -86,7 +120,7 @@ const ServiceDetails = () => {
               <p className="text-gray-500">{description}</p>
 
               <div className="bg-base-100 p-4 rounded-lg flex items-center gap-3 mt-4">
-                  <p className="text-sm text-gray-500">Beauty Expert</p>
+                <p className="text-sm text-gray-500">Beauty Expert</p>
 
               </div>
 
@@ -105,44 +139,44 @@ const ServiceDetails = () => {
                 <h4 className="text-sm text-gray-500">Availability</h4>
                 <p className="text-green-600 font-semibold">mon-fri</p>
               </div>
-              <button onClick={() => document.getElementById('my_modal_4').showModal()}  className="btn btn-primary bg-cyan-600 w-full mt-2">
+              <button onClick={() => document.getElementById('my_modal_4').showModal()} className="btn btn-primary bg-cyan-600 w-full mt-2">
                 Book Now
               </button>
               <dialog id="my_modal_4" className="modal">
                 <div className="modal-box w-11/12">
                   <h3 className="font-bold text-lg">Bookings</h3>
                   <div className="modal-action">
-                    
-                    <form  >
+
+                    <form onSubmit={handleBookings} >
                       <div className="grid grid-cols-2 gap-4">
                         <div><label>Service ID</label>
-                          <input value={_id} readOnly className="input input-bordered" placeholder="Service ID" />
+                          <input value={_id} name='serviceId' readOnly className="input input-bordered" placeholder="Service ID" />
                         </div>
                         <div>
                           <label htmlFor="">Service Name</label>
-                          <input value={serviceName} readOnly className="input input-bordered" placeholder="Service Name" />
+                          <input value={serviceName} name='serviceName' readOnly className="input input-bordered" placeholder="Service Name" />
                         </div>
-                        
+
                         <div>
                           <label htmlFor="">Provider Name</label>
-                          <input value={providerName} readOnly className="input input-bordered" placeholder="Provider Name" />
+                          <input value={providerName} name='providerName' readOnly className="input input-bordered" placeholder="Provider Name" />
                         </div>
                         <div>
                           <label htmlFor="">Provider Email</label>
-                          <input value={providerEmail} readOnly className="input input-bordered" placeholder="Provider Email" />
+                          <input value={providerEmail} name='providerEmail' readOnly className="input input-bordered" placeholder="Provider Email" />
                         </div>
                         <div>
                           <label htmlFor="">Customer Name</label>
-                          <input value={user.displayName} readOnly className="input input-bordered" placeholder="User Name" />
+                          <input value={user.displayName} name='userName' readOnly className="input input-bordered" placeholder="User Name" />
                         </div>
-                        
+
                         <div>
                           <label htmlFor="">Customer Email</label>
-                          <input value={user.email} readOnly className="input input-bordered" placeholder="User Email" />
+                          <input value={user.email} name='userEmail' readOnly className="input input-bordered" placeholder="User Email" />
                         </div>
                         <div>
                           <label htmlFor="">price</label>
-                          <input value={price} readOnly className="input input-bordered" placeholder="Price (BDT)" />
+                          <input value={price} name='price' readOnly className="input input-bordered" placeholder="Price (BDT)" />
                         </div>
 
 
@@ -175,8 +209,8 @@ const ServiceDetails = () => {
                       <div className='flex gap-3 justify-end items-center'><form method="dialog">
                         <button className="btn">Close</button>
                       </form>
-                      <button type='submit' className="btn">Purchase</button></div>
-                      
+                        <button type='submit' className="btn">Purchase</button></div>
+
                     </form>
                   </div>
                 </div>
