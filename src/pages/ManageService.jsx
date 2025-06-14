@@ -40,6 +40,19 @@ const ManageService = () => {
         <title>Manage Services</title>
       </Helmet>
       <h1 className='text-center p-7 text-2xl font-bold text-pink-500'>Manage services</h1>
+      {
+        (services.length > 0) ? (<div className='grid sm:grid-cols-2 gap-6'>
+          {
+            services.map(service => (
+
+              <ManageServiceCard key={service._id} service={service} onDelete={handleDelete} />
+
+            ))
+          }
+        </div>) : (<>
+        <h1 className='text-center text-cyan-600'>You haven't added any services yet!</h1>
+          </>)
+      }
       <div className='grid sm:grid-cols-2 gap-6'>
         {
           services.map(service => (
