@@ -39,7 +39,7 @@ const EditService = () => {
         const formData = new FormData(form);
         const data = Object.fromEntries(formData.entries());
         data.providerEmail = user.email
-        data.ProviderName = user.displayName
+        data.providerName = user.displayName
         data.providerImage = user.photoURL
         data.price = parseInt(data.price)
 
@@ -51,7 +51,7 @@ const EditService = () => {
             body: JSON.stringify(data)
         }).then(res => res.json())
             .then(data => {
-                //console.log(res)
+                //console.log(data)
                 if (data?.modifiedCount > 0) {
                     toast.success('Service updated successfully!')
                     navigate('/manage-service')

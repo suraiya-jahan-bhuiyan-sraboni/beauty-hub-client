@@ -16,7 +16,7 @@ const AddService = () => {
     const formData = new FormData(form);
     const data = Object.fromEntries(formData.entries());
     data.providerEmail = user.email
-    data.ProviderName = user.displayName
+    data.providerName = user.displayName
     data.providerImage = user.photoURL
     data.price = parseInt(data.price)
     //console.log(data)
