@@ -20,7 +20,7 @@ const AddService = () => {
     data.providerImage = user.photoURL
     data.price = parseInt(data.price)
     //console.log(data)
-    token=user?.accessToken
+    const token=user?.accessToken
     fetch(`${import.meta.env.VITE_API_URL}/services`, {
       method: 'POST',
       headers: {

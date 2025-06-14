@@ -14,7 +14,7 @@ const EditService = () => {
     const { user } = use(AuthContext)
     const [service, setservice] = useState({})
     const { id } = useParams()
-    token = user?.accessToken
+    const token = user?.accessToken
     useEffect(() => {
         fetch(`${import.meta.env.VITE_API_URL}/services/${id}`, {
             headers: {

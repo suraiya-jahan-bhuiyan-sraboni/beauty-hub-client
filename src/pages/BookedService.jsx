@@ -12,7 +12,7 @@ const BookedService = () => {
   const { user } = use(AuthContext)
   const [bookedServices, setbookedServices] = useState([])
   const [loading, setLoading] = useState(true)
-  token = user?.accessToken
+  const token = user?.accessToken
   useEffect(() => {
     fetch(`${import.meta.env.VITE_API_URL}/bookings?email=${user?.email}`, {
       headers: {
