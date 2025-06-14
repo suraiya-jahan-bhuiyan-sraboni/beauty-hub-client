@@ -63,7 +63,7 @@ const ServiceDetails = () => {
     data.price = parseInt(data.price)
     data.serviceStatus = 'pending'
     data.providerArea=area
-    console.log(data)
+    //console.log(data)
     fetch(`${import.meta.env.VITE_API_URL}/bookings`, {
       method: 'POST',
       headers: {
@@ -74,7 +74,7 @@ const ServiceDetails = () => {
     })
       .then(res => res.json())
       .then(data => {
-        console.log(data)
+        //console.log(data)
         if (data.acknowledged) {
           // console.log(data)
           toast.success('Booking successfully Done!')
