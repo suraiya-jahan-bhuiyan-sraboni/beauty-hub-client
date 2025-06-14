@@ -10,9 +10,13 @@ const ManageService = () => {
   const { user } = use(AuthContext)
   const [services, setservices] = useState([])
   const [loading, setLoading] = useState(true)
-
+  const token = user.accessToken
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_URL}/my-services?email=${user?.email}`)
+    fetch(`${import.meta.env.VITE_API_URL}/my-services?email=${user?.email}`, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
       .then(res => res.json())
       .then(data => {
         setservices(data)
@@ -46,7 +50,7 @@ const ManageService = () => {
           {
             services.map(service => (
 
-              <ManageServiceCard key={service._id} service={service} onDelete={handleDelete} />
+              <ManageServiceCard key={service._id} service={service} onDelete={handleDelete} token={token} />
 
             ))
           }

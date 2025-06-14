@@ -15,10 +15,15 @@ const ServiceDetails = () => {
   const [loading, setLoading] = useState(true)
   const { id } = useParams()
   //console.log(id)
+  const token=user?.accessToken
 
   useEffect(() => {
     setLoading(true)
-    fetch(`${import.meta.env.VITE_API_URL}/services/${id}`)
+    fetch(`${import.meta.env.VITE_API_URL}/services/${id}`, {
+      headers: {
+        Authorization:`Bearer ${token}`
+      }
+    })
       .then(res => res.json())
       .then(data => {
         setservice(data)
@@ -62,7 +67,8 @@ const ServiceDetails = () => {
     fetch(`${import.meta.env.VITE_API_URL}/bookings`, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`
       },
       body: JSON.stringify(data)
     })

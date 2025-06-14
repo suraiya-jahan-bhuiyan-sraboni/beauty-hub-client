@@ -62,7 +62,6 @@ const AllServiceCard = ({ service }) => {
                 <div className="mt-4">
                     <Link
                         to={`/service-details/${_id}`}
-                        // onClick={onViewDetails}
                         className="btn text-white bg-pink-600 btn-block"
                     >
                         View Details</Link>

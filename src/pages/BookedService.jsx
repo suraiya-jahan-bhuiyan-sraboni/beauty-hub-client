@@ -5,14 +5,20 @@ import { useEffect } from 'react'
 import { AuthContext } from '../context/AuthContextProvider'
 import { SlCalender } from "react-icons/sl";
 import { FaClock, FaMapPin } from "react-icons/fa";
+import Helmet from "react-helmet"
 
 
 const BookedService = () => {
   const { user } = use(AuthContext)
   const [bookedServices, setbookedServices] = useState([])
   const [loading, setLoading] = useState(true)
+  token = user?.accessToken
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_URL}/bookings?email=${user?.email}`)
+    fetch(`${import.meta.env.VITE_API_URL}/bookings?email=${user?.email}`, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
       .then(res => res.json())
       .then(data => {
         setbookedServices(data)
@@ -34,6 +40,9 @@ const BookedService = () => {
   }
   return (
     <div className='w-11/12 mx-auto min-h-screen py-10'>
+      <Helmet>
+        <title>Booked Services</title>
+      </Helmet>
       <h1 className='text-center pb-10 font-bold text-3xl'>My Booked Services</h1>
       <div className=''>
         {

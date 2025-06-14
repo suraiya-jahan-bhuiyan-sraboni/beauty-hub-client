@@ -26,7 +26,7 @@ const AuthContextProvider = ({ children }) => {
         return signInWithPopup(auth, provider)
     }
 
-    //console.log(user)
+   // console.log(user)
 
     const logout = () => {
         return signOut(auth);

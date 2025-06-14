@@ -14,9 +14,13 @@ const EditService = () => {
     const { user } = use(AuthContext)
     const [service, setservice] = useState({})
     const { id } = useParams()
-
+    token = user?.accessToken
     useEffect(() => {
-        fetch(`${import.meta.env.VITE_API_URL}/services/${id}`)
+        fetch(`${import.meta.env.VITE_API_URL}/services/${id}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+          })
             .then(res => res.json())
             .then(data => {
                 setservice(data)
@@ -46,7 +50,8 @@ const EditService = () => {
         fetch(`${import.meta.env.VITE_API_URL}/services/${_id}`, {
             method: 'PUT',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${token}`
             },
             body: JSON.stringify(data)
         }).then(res => res.json())

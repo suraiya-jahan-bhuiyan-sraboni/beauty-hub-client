@@ -2,13 +2,19 @@ import React, { use, useEffect, useState } from 'react'
 import { FaCalendarAlt, FaMapMarkerAlt } from 'react-icons/fa';
 import { AuthContext } from '../context/AuthContextProvider';
 import { toast } from 'react-toastify'
+import Helmet from "react-helmet"
 
 const ServiceToDo = () => {
   const { user } = use(AuthContext)
   const [services, setServices] = useState([])
   const [loading, setLoading] = useState(true)
+  const token=user.accessToken
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_URL}/service-to-do?email=${user?.email}`)
+    fetch(`${import.meta.env.VITE_API_URL}/service-to-do?email=${user?.email}`, {
+      headers: {
+        Authorization:`Bearer ${token}`
+      }
+    })
       .then(res => res.json())
       .then(data => {
         setServices(data)
@@ -34,7 +40,9 @@ const ServiceToDo = () => {
 
   return (
     <div className='w-11/12 mx-auto min-h-screen py-10'>
-
+      <Helmet>
+        <title>Services to do</title>
+      </Helmet>
       <h1 className='text-center text-2xl pb-2 font-bold'>Service To Do</h1>
       <p className='text-center pb-10 text-xs'>Manage your booked services and update their status</p>
       {
@@ -64,6 +72,7 @@ const ServiceToDo = () => {
                     method: 'PATCH',
                     headers: {
                       'Content-Type': 'application/json',
+                      Authorization: `Bearer ${token}`
                     },
                     body: JSON.stringify({ status: newStatus }),
                   })

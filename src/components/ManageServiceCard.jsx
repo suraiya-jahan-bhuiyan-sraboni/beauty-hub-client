@@ -4,7 +4,7 @@ import { Link } from 'react-router'
 import { IoLocation } from "react-icons/io5";
 import Swal from 'sweetalert2'
 
-const ManageServiceCard = ({ service, onDelete }) => {
+const ManageServiceCard = ({ service, onDelete,token }) => {
     const {
         _id,
         serviceImage,
@@ -27,6 +27,9 @@ const ManageServiceCard = ({ service, onDelete }) => {
 
                 fetch(`${import.meta.env.VITE_API_URL}/services/${_id}`, {
                     method: "DELETE",
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
                 }).then(res => res.json())
                     .then(data => {
                         if (data.deletedCount > 0) {
