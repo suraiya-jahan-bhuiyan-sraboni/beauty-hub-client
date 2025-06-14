@@ -105,7 +105,7 @@ const Login = () => {
                                                 placeholder="*****"
                                                 className="w-full px-3 py-2 border rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800 focus:dark:border-violet-600" />
                                             <span onClick={() => setShowPassword(!showPassword)}
-                                                className=' absolute top-3 right-2' >
+                                                className='text-gray-500 absolute top-3 right-2' >
                                                 {showPassword ? <FaEye /> : <FaRegEyeSlash />}
                                             </span>
                                         </div>
