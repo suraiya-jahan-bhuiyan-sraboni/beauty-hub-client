@@ -46,9 +46,9 @@ const BookedService = () => {
               serviceId,
               serviceName,
               serviceImage,
-              description,
               providerImage,
               providerName,
+              providerEmail,
               price,
               serviceStatus,
               serviceTakingDate,
@@ -72,15 +72,20 @@ const BookedService = () => {
                     <div className="flex items-start justify-between">
                       <div>
                         <h3 className="text-lg font-semibold">{serviceName}</h3>
-                        <p className="text-gray-600 text-sm mt-1">{description}</p>
+                        
                         <div className="flex items-center mt-2 space-x-2">
                           <img
                             src={providerImage}
                             alt={providerName}
                             className="w-8 h-8 rounded-full"
                           />
-                          <span className="text-sm font-medium">{providerName}</span>
+                          <div>
+                            <span className="text-sm font-medium">{providerName}</span>
+                            <p className="text-gray-600 text-sm mt-1">{providerEmail}</p>
+                          </div>
+                          
                         </div>
+                        
                       </div>
 
                       <div className="text-right">
@@ -119,10 +124,15 @@ const BookedService = () => {
 
                     <div className="flex justify-end gap-4 mt-10">
                       <button className="px-4 py-1 border border-cyan-600 text-cyan-600 rounded-md hover:bg-cyan-50">
-                        Reschedule
+                        { 
+                          (serviceStatus === 'pending' || serviceStatus === 'working')?'Reschedule':'Book Again'
+                        }
+                        
                       </button>
                       <button className="px-4 py-1 border border-pink-500 text-pink-500 rounded-md hover:bg-pink-50">
-                        Cancel Booking
+                        {
+                          (serviceStatus === 'pending' || serviceStatus === 'working') ? 'Cancel Booking' : 'Leave Review'
+                        } 
                       </button>
                     </div>
                   </div>
