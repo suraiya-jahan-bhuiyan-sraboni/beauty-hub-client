@@ -1,12 +1,14 @@
-import React from 'react'
+import React, { use } from 'react'
 import { useState } from 'react'
 import { useEffect } from 'react'
 import { useParams } from 'react-router'
 import { motion } from "framer-motion";
 import { FaStar } from "react-icons/fa";
 import Helmet from "react-helmet"
+import { AuthContext } from '../context/AuthContextProvider';
 
 const ServiceDetails = () => {
+  const {user}=use(AuthContext)
   const [service, setservice] = useState({})
   const [loading, setLoading] = useState(true)
   const { id } = useParams()
@@ -33,12 +35,14 @@ const ServiceDetails = () => {
     );
   }
   const {
+    _id,
     serviceImage,
     serviceName,
     description,
     price,
     providerName,
     providerImage,
+    providerEmail,
    area
   } = service;
 
@@ -57,7 +61,7 @@ const ServiceDetails = () => {
           <div className="flex justify-between items-center">
             <div className="flex items-center gap-3">
               <div className="w-12 h-12 rounded-full  text-white flex items-center justify-center font-bold text-lg">
-                <img className='rounded-full' src={`${providerImage}`} alt="" />
+                <img className='w-12 h-12 object-cover rounded-full' src={`${providerImage}`} alt="" />
               </div>
               <div>
                 <h3 className="font-bold">{providerName}</h3>
@@ -101,9 +105,82 @@ const ServiceDetails = () => {
                 <h4 className="text-sm text-gray-500">Availability</h4>
                 <p className="text-green-600 font-semibold">mon-fri</p>
               </div>
-              <button  className="btn btn-primary bg-cyan-600 w-full mt-2">
+              <button onClick={() => document.getElementById('my_modal_4').showModal()}  className="btn btn-primary bg-cyan-600 w-full mt-2">
                 Book Now
               </button>
+              <dialog id="my_modal_4" className="modal">
+                <div className="modal-box w-11/12">
+                  <h3 className="font-bold text-lg">Bookings</h3>
+                  <div className="modal-action">
+                    
+                    <form  >
+                      <div className="grid grid-cols-2 gap-4">
+                        <div><label>Service ID</label>
+                          <input value={_id} readOnly className="input input-bordered" placeholder="Service ID" />
+                        </div>
+                        <div>
+                          <label htmlFor="">Service Name</label>
+                          <input value={serviceName} readOnly className="input input-bordered" placeholder="Service Name" />
+                        </div>
+                        
+                        <div>
+                          <label htmlFor="">Provider Name</label>
+                          <input value={providerName} readOnly className="input input-bordered" placeholder="Provider Name" />
+                        </div>
+                        <div>
+                          <label htmlFor="">Provider Email</label>
+                          <input value={providerEmail} readOnly className="input input-bordered" placeholder="Provider Email" />
+                        </div>
+                        <div>
+                          <label htmlFor="">Customer Name</label>
+                          <input value={user.displayName} readOnly className="input input-bordered" placeholder="User Name" />
+                        </div>
+                        
+                        <div>
+                          <label htmlFor="">Customer Email</label>
+                          <input value={user.email} readOnly className="input input-bordered" placeholder="User Email" />
+                        </div>
+                        <div>
+                          <label htmlFor="">price</label>
+                          <input value={price} readOnly className="input input-bordered" placeholder="Price (BDT)" />
+                        </div>
+
+
+                      </div>
+
+                      {/* Editable Fields */}
+                      <div className="space-y-3 flex flex-col gap-4 py-5">
+                        <label className="form-control w-full">
+                          <span className="label-text font-medium">Service Taking Date</span>
+                          <input
+                            type="date"
+                            name="serviceTakingDate"
+                            className="input input-bordered w-full"
+                            required
+                          />
+                        </label>
+
+                        <label className="form-control w-full flex flex-col">
+                          <span className="label-text font-medium">Special Instructions</span>
+                          <textarea
+                            name="specialInstruction"
+                            className="textarea textarea-bordered w-full"
+                            placeholder="Address, area, custom plan..."
+                            rows={3}
+                            required
+                          ></textarea>
+                        </label>
+                      </div>
+                      {/* if there is a button, it will close the modal */}
+                      <div className='flex gap-3 justify-end items-center'><form method="dialog">
+                        <button className="btn">Close</button>
+                      </form>
+                      <button type='submit' className="btn">Purchase</button></div>
+                      
+                    </form>
+                  </div>
+                </div>
+              </dialog>
             </div>
           </div>
         </div>
