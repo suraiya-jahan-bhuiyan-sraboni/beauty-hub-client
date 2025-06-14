@@ -73,8 +73,6 @@ const ServiceToDo = () => {
                 setServices(updatedServices);
               });
            
-
-            // For now, update locally
             const updatedServices = services.map(service =>
               service._id === id ? { ...service, serviceStatus: newStatus } : service
             );
