@@ -1,12 +1,59 @@
-# React + Vite
+#  BeautyHub - Premium Beauty & Grooming Services Platform
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+🔗 **Live Website:** https://beauty-service-e3e8a.web.app/
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+ **Assignment Category:** Assignment-11-assignment_category_02
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+##  Project Overview
+
+BeautyHub is a full-stack **service-sharing web application** where users can add their own beauty services, explore others’ services, book appointments, and manage bookings through a personalized dashboard. Built with **React**, **Firebase**, **MongoDB**, and **Express.js**, the project showcases real-time user interaction, secure authentication, and dynamic service management.
+
+---
+
+##  Website Features
+
+-  **Dashboard:** Logged-in users get a dynamic dashboard with options to manage their own services and bookings.
+-  **Secure Authentication:** Firebase-based email/password & Google login system with JWT with firebase admin for backend route protection.
+-  **Service CRUD Operations:** Add, update, and delete personal services, fully synced with MongoDB.
+-  **Booking Management:** Book services with form inputs, track service status (pending, working, completed).
+-  **Responsive UI:** Fully responsive on mobile, tablet, and desktop devices.
+-  **Theme Toggle:** Switch between Light and Dark modes effortlessly.
+-  **Search Functionality:** Live filtering of services by name on all service page.
+
+---
+
+##  Pages & Routes
+
+###  Public Routes
+- `/` - Home (with banner, featured services, and extras)
+- `/login` - Login (email/password + Google)
+- `/register` - Registration
+- `/services` - All available services
+
+
+###  Private Dashboard (Dropdown Navigation)
+- `/services/:id` - Service details (Private)
+- `/dashboard/add-service` - Add your own services
+-  `/dashboard/edit-service` - Edit your own services
+- `/dashboard/manage-services` - Update or delete your services
+- `/dashboard/booked-services` - View services you've booked
+- `/dashboard/service-to-do` - View services booked *from* you & update status
+
+---
+
+## 🛠 Tech Stack
+
+| Tech              | Purpose                         |
+|-------------------|----------------------------------|
+| React             | Frontend Framework              |
+| Tailwind CSS + DaisyUI | Styling & Components     |
+| Firebase Auth     | Authentication (email + Google) |
+| Express.js        | Backend Framework               |
+| MongoDB Atlas     | Database                        |
+| Firebase Hosting  | Client Deployment               |
+| AOS / Framer Motion | Animation Effects             |
+| JWT               | Secure Route Protection         |
+
