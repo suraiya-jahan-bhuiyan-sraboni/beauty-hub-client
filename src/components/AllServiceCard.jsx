@@ -19,10 +19,12 @@ const AllServiceCard = ({ service }) => {
             className="card bg-base-100 shadow-xl overflow-hidden border border-gray-200"
         >
 
-            <div className=" bg-purple-700 text-white text-center text-2xl font-bold relative">
+            <div className=" bg-cyan-400 text-white text-center text-2xl font-bold relative">
                 <img className='w-full h-[250px] object-cover' src={`${serviceImage}`} alt="" />
-                <span className='absolute right-1/2 bottom-1/4 
-                    transform translate-x-1/2 text-shadow-lg/50 text-shadow-pink-500'>{serviceName}</span>
+                <div className='absolute top-0 left-0 w-full h-full bg-black opacity-60'>
+                </div>
+                <span className='absolute left-1/2 top-1/2
+                    transform -translate-x-1/2 -translate-y-1/2 text-shadow-lg/50 text-shadow-pink-500'>{serviceName}</span>
             </div>
 
             <div className="card-body space-y-2">
