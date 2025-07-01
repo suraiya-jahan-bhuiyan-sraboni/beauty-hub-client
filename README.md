@@ -2,9 +2,6 @@
 
 🔗 **Live Website:** https://beauty-service-e3e8a.web.app/
 
-
- **Assignment Category:** Assignment-11-assignment_category_02
-
 ---
 
 ##  Project Overview
