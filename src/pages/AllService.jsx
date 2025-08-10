@@ -9,6 +9,7 @@ const AllService = () => {
   const [services, setservices] = useState([])
   const [loading, setLoading] = useState(true)
   const [search, setSearch] = useState('')
+  const [sort, setSort] = useState('');
   
 
   useEffect(() => {
@@ -19,6 +20,12 @@ const AllService = () => {
         setLoading(false)
       })
   }, [search])
+
+    const sortedServices = [...services].sort((a, b) => {
+    if (sort === "asc") return a.price - b.price;
+    if (sort === "desc") return b.price - a.price;
+    return 0;
+  });
  // console.log(search)
   //console.log(services)
   if (loading) {
@@ -38,7 +45,7 @@ const AllService = () => {
       <div className='py-15 '>
         <h1 className='text-center font-bold text-3xl'>All Beauty Services</h1>
         <p className='text-center text-xs py-4 mb-10'>Discover our complete range of professional beauty and wellness services from certified experts</p>
-        <form action="" className='w-full flex justify-center items-center'>
+        <form action="" className='w-full flex flex-col sm:flex-row justify-center gap-3 items-center'>
           <label className="input flex justify-center w-11/12">
             <svg className="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
               <g
@@ -56,11 +63,19 @@ const AllService = () => {
               onChange={e => setSearch(e.target.value)}
               type="search" required placeholder="Search" className='w-full' />
           </label>
+          <select
+            onChange={(e) => setSort(e.target.value)}
+            className="border border-accent px-1 py-2 rounded-md"
+          >
+            <option value="">Sort By (Default)</option>
+            <option value="asc">Price: Low to High</option>
+            <option value="desc">Price: High to Low</option>
+          </select>
         </form>
-        <div className='mt-10'>
+        <div className='mt-10 grid grid-cols-1 sm:grid-cols-2  gap-6'>
           {
-            (services.length > 0) ? (<>
-              {services.map(service => (
+            (sortedServices.length > 0) ? (<>
+              {sortedServices.map(service => (
               <div className='py-5' key={service._id}>
                 <AllServiceCard  service={service} />
               </div>

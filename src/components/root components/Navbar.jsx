@@ -59,7 +59,8 @@ const Navbar = () => {
                   <li><NavLink to="/service-to-do">Services To Do</NavLink></li>
 
                   <button onClick={handleLogout} className='btn bg-pink-600 text-white font-semibold m-4 sm:hidden '>Log out</button>
-                </> : <>
+                </> : 
+                <>
                   <Link to="/register" className="btn text-pink-600 font-semibold m-2 text-center custom-btn">Register</Link>
                   <Link to="/login" className="btn text-pink-600 font-semibold m-2 text-center custom-btn">Login</Link>
                 </>
@@ -72,8 +73,6 @@ const Navbar = () => {
           <ul className="menu menu-horizontal px-1">
             <li><NavLink to="/">Home</NavLink></li>
             <li><NavLink to="/all-service">Services</NavLink></li>
-
-
             {
               user ? <><li className="dropdown dropdown-bottom dropdown-center ">
                 <div tabIndex={0} role="button" className="">Dashboard</div>
@@ -85,7 +84,6 @@ const Navbar = () => {
                 </ul>
               </li> </> : null
             }
-
           </ul>
         </div>
         <div className="navbar-end">
@@ -97,9 +95,8 @@ const Navbar = () => {
           {
             (user) ?
               <>
-
                 <div className=" mx-4 relative group">
-                  <img className='w-10 h-10 object-cover rounded-full '
+                  <img className='w-10 h-10 object-cover rounded-full'
                     alt="user "
                     data-tooltip-id="user-tooltip"
                     data-tooltip-content={user.displayName}
@@ -121,8 +118,6 @@ const Navbar = () => {
                 )}
               </>
           }
-
-
         </div>
       </div>
     </div>
