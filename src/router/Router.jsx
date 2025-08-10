@@ -14,6 +14,7 @@ import Error404 from "../pages/Error404";
 import AllService from "../pages/AllService";
 import PrivateRoute from "./PrivateRoute";
 import EditService from "../pages/EditService";
+import About from "../pages/About";
 export const router = createBrowserRouter([
     {
         path: "/",
@@ -63,6 +64,10 @@ export const router = createBrowserRouter([
             {
                 path: '/all-service',
                 element: <AllService />
+            },
+            {
+                path:'/contact',
+                element:<About/>
             }
         ]
     },
