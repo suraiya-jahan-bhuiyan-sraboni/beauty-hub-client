@@ -37,8 +37,8 @@ const Navbar = () => {
   }
 
   return (
-    <div className="shadow shadow-cyan-600/50">
-      <div className="w-11/12 mx-auto navbar bg-base-100 px-0 ">
+    <div className="shadow shadow-cyan-600/50 bg-base-100 sticky top-0 z-50">
+      <div className="w-11/12 mx-auto navbar bg-base-100 px-0">
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden pl-0">
@@ -50,6 +50,8 @@ const Navbar = () => {
 
               <li><NavLink to="/">Home</NavLink></li>
               <li><NavLink to="/all-service">Services</NavLink></li>
+              <li><NavLink to="/contact">Contact Us</NavLink></li>
+
 
               {
                 user ? <>
@@ -73,6 +75,7 @@ const Navbar = () => {
           <ul className="menu menu-horizontal px-1">
             <li><NavLink to="/">Home</NavLink></li>
             <li><NavLink to="/all-service">Services</NavLink></li>
+            <li><NavLink to="/contact">Contact Us</NavLink></li>
             {
               user ? <><li className="dropdown dropdown-bottom dropdown-center ">
                 <div tabIndex={0} role="button" className="">Dashboard</div>
