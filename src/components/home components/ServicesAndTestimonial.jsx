@@ -58,9 +58,9 @@ const testimonials = [
 
 const ServicesAndTestimonial = () => {
   return (
-      <div>
-          <div className="p-8 max-w-6xl mx-auto space-y-12">
-              <div className="text-center">
+      <div className=''>
+          <div className="py-8 space-y-24">
+              <div className="text-center bg-base-200 p-8 py-20">
                   <h2 className="text-3xl font-bold">Why Choose BeautyHub?</h2>
                   <p className="text-gray-600 mt-2">
                       We connect you with certified beauty professionals who deliver exceptional results
@@ -91,7 +91,7 @@ const ServicesAndTestimonial = () => {
                               transition={{ duration: 0.5, delay: idx * 0.2 }}
                               className="card shadow-lg bg-base-100"
                           >
-                              <div className="card-body items-center text-center">
+                              <div className="card-body items-center text-center border border-gray-400">
                                       <div className={`w-10 h-10 rounded-full flex items-center justify-center ${feature.color}`}>
                                           <Icon className="w-6 h-6" />
                                       </div>
