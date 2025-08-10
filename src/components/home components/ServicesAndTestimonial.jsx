@@ -60,7 +60,7 @@ const ServicesAndTestimonial = () => {
   return (
       <div className=''>
           <div className="py-8 space-y-24">
-              <div className="text-center bg-base-200 p-8 py-20">
+              <div className="text-center bg-base-200 p-20">
                   <h2 className="text-3xl font-bold">Why Choose BeautyHub?</h2>
                   <p className="text-gray-600 mt-2">
                       We connect you with certified beauty professionals who deliver exceptional results
@@ -103,7 +103,7 @@ const ServicesAndTestimonial = () => {
                   </div>
               </div>
 
-              <div className="text-center">
+              <div className="text-center p-20 bg-base-200">
                   <h2 className="text-3xl font-bold">What Our Clients Say</h2>
                   <p className="text-gray-600 mt-2">
                       Real feedback from satisfied clients who trust BeautyHub for their beauty and wellness needs
@@ -114,7 +114,7 @@ const ServicesAndTestimonial = () => {
                           <motion.div
                               key={idx}
                               whileHover={{ scale: 1.03 }}
-                              className="card bg-base-100 shadow-md"
+                              className="card bg-base-100 shadow-md border border-amber-200"
                           >
                               <div className="card-body">
                                   <div className="flex items-center space-x-4">
